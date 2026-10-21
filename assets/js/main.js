@@ -9,7 +9,8 @@
   var header = document.querySelector(".site-header");
   if (header) {
     var onScroll = function () {
-      header.classList.toggle("is-scrolled", window.scrollY > 8);
+      var limit = document.body.classList.contains("home") ? 80 : 8;
+      header.classList.toggle("is-scrolled", window.scrollY > limit);
     };
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
@@ -55,6 +56,38 @@
   document.querySelectorAll(".day[data-date]").forEach(function (day) {
     if (day.getAttribute("data-date") === today) day.classList.add("is-today");
   });
+
+  /* Startsidans hero: kort med dagens lunch (hämtas från veckomenyn längre ned) */
+  var card = document.querySelector(".stage-card");
+  if (card) {
+    var closed = false;
+    try {
+      closed = sessionStorage.getItem("fm-card-closed") === "1";
+    } catch (e) {}
+    var todayEl = document.querySelector(".day.is-today");
+    var list = card.querySelector("[data-card-dishes]");
+    var weekTitle = document.querySelector(".lunch__title .display");
+    if (todayEl) {
+      card.querySelector("[data-card-kicker]").textContent =
+        "Idag · " + todayEl.querySelector("h3").textContent + " " + todayEl.querySelector(".day__date").textContent;
+      todayEl.querySelectorAll(".dish > span:last-child").forEach(function (d) {
+        var li = document.createElement("li");
+        li.textContent = d.textContent;
+        list.appendChild(li);
+      });
+    } else {
+      card.querySelector("[data-card-kicker]").textContent = "Veckans lunch";
+      card.querySelector("[data-card-title]").textContent = weekTitle ? weekTitle.textContent : "Veckans lunch";
+      list.remove();
+    }
+    if (!closed) card.hidden = false;
+    card.querySelector(".stage-card__close").addEventListener("click", function () {
+      card.hidden = true;
+      try {
+        sessionStorage.setItem("fm-card-closed", "1");
+      } catch (e) {}
+    });
+  }
 
   /* Inrörelser */
   var reveals = document.querySelectorAll(".reveal");

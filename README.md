@@ -3,7 +3,7 @@
 Statisk webbplats (HTML, CSS och lite JavaScript – inga ramverk, ingen byggprocess).
 
 ```
-index.html        Startsida (hero, intro, veckans lunch, catering, jul, kontakt)
+index.html        Startsida (helbildshero med dagens lunch, intro, veckans lunch, catering, jul, kontakt)
 catering.html     Hela cateringmenyn som text (från PDF:erna)
 om-oss.html       Om oss
 kontakt.html      Kontaktuppgifter + offertformulär

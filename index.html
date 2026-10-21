@@ -17,7 +17,8 @@
   <link rel="apple-touch-icon" href="assets/img/icon-192.png">
   <link rel="preload" href="assets/fonts/bebas-neue-latin.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="assets/fonts/instrument-sans-var-latin.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="preload" href="assets/img/canapeer.webp" as="image" fetchpriority="high">
+  <link rel="preload" href="assets/img/hero-rostbiff.webp" as="image" media="(min-width: 721px)" fetchpriority="high">
+  <link rel="preload" href="assets/img/hero-rostbiff-mobil.webp" as="image" media="(max-width: 720px)" fetchpriority="high">
   <link rel="stylesheet" href="assets/css/main.css">
   <script type="application/ld+json">
   {
@@ -49,7 +50,7 @@
   }
   </script>
 </head>
-<body>
+<body class="home">
   <a class="skip-link" href="#innehall">Hoppa till innehållet</a>
 
   <div class="topbar">
@@ -107,36 +108,36 @@
   <main id="innehall">
 
     <!-- HERO -->
-    <section class="hero" aria-labelledby="hero-titel">
-      <div class="wrap">
-        <div class="hero__copy">
-          <p class="kicker reveal">Lunch &amp; catering i Härnösand</p>
-          <h1 class="hero__title display h-xl reveal" id="hero-titel" style="--d:.06s">
-            <span class="line">God mat</span>
-            <span class="line">till livets</span>
-            <span class="line">alla tillfällen</span>
-          </h1>
-          <p class="lead hero__lead reveal" style="--d:.12s">
-            I vårt kök på Kusthöjden lagar vi husmanskost till dagens lunch och buffémat till allt från små möten till stora fester.
-          </p>
-          <div class="hero__actions reveal" style="--d:.18s">
-            <a class="btn btn--ink" href="catering.html">Se vår catering <span class="arrow" aria-hidden="true">→</span></a>
-            <a class="btn btn--ghost" href="kontakt.html">Kontakta oss</a>
-          </div>
-          <ul class="hero__facts reveal" style="--d:.24s">
-            <li><strong>10.30–13.00</strong> Lunch måndag–fredag</li>
-            <li><strong>2 rätter</strong> + salladsbuffé varje dag</li>
-            <li><strong>Kaffe &amp; kaka</strong> ingår alltid efter maten</li>
-          </ul>
-        </div>
+    <section class="stage" aria-labelledby="hero-titel">
+      <picture class="stage__media">
+        <source media="(max-width: 720px)" srcset="assets/img/hero-rostbiff-mobil.webp" width="1035" height="2048">
+        <img src="assets/img/hero-rostbiff.webp" width="2560" height="1152" fetchpriority="high" alt="Fat med rostbiff garnerade med apelsinblommor, jordgubbar och persilja">
+      </picture>
 
-        <div class="collage reveal" style="--d:.1s" aria-label="Bilder på mat från Freddes Mat">
-          <figure><img src="assets/img/rostbiff-fat.webp" width="810" height="1800" alt="Fat med rosa rostbiff, garnerat med apelsinblommor och persilja"></figure>
-          <figure><img src="assets/img/canapeer.webp" width="810" height="1800" alt="Plåtar med nygjorda snittar toppade med dill" fetchpriority="high"></figure>
-          <figure><img src="assets/img/wraps.webp" width="810" height="1800" alt="Skivade tortillarullar med dill på bricka"></figure>
-          <p class="collage__badge" aria-hidden="true">Varmt<br>välkommen!</p>
-        </div>
+      <p class="stage__corner stage__corner--tl"><span class="stage__dot" aria-hidden="true"></span>Kusthöjden · Härnösand</p>
+      <p class="stage__corner stage__corner--tr">Lunch · Catering</p>
+
+      <div class="stage__center">
+        <p class="stage__kicker">Mat för alla tillfällen</p>
+        <h1 id="hero-titel" class="stage__title">
+          <img class="stage__logo" src="assets/img/freddes-mat-logo@2x.png" width="1280" height="926" alt="Freddes Mat">
+          <span class="stage__sub">Lunch &amp; catering i Härnösand</span>
+        </h1>
       </div>
+
+      <a class="stage__scroll" href="#lunch">Scroll <span aria-hidden="true">↓</span></a>
+
+      <aside class="stage-card" aria-labelledby="stage-card-titel" hidden>
+        <button class="stage-card__close" type="button" aria-label="Stäng">×</button>
+        <img class="stage-card__img" src="assets/img/salladsbuffe.webp" width="1800" height="810" alt="">
+        <div class="stage-card__body">
+          <p class="stage-card__kicker" data-card-kicker>Veckans lunch</p>
+          <h2 class="stage-card__title" id="stage-card-titel" data-card-title>Dagens lunchbuffé</h2>
+          <ul class="stage-card__dishes" data-card-dishes></ul>
+          <p class="stage-card__meta">130 kr · Mån–fre 10.30–13.00 · Salladsbuffé ingår</p>
+          <a class="stage-card__link" href="#lunch">Se veckans meny <span aria-hidden="true">→</span></a>
+        </div>
+      </aside>
     </section>
 
     <!-- BAND -->
@@ -169,9 +170,8 @@
         <div class="intro__grid">
           <div>
             <p class="kicker reveal">Freddes Mat</p>
-            <h2 class="statement reveal" id="intro-titel" style="--d:.06s">
-              Från vårt kök på fina Kusthöjden i Härnösand lagar vi mat till allt från små möten till stora tillfällen.
-            </h2>
+            <h2 class="display h-lg reveal" id="intro-titel" style="--d:.06s">God mat till livets alla tillfällen</h2>
+            <p class="lead reveal" style="--d:.1s;margin-top:24px">Från vårt kök på fina Kusthöjden i Härnösand lagar vi mat till allt från små möten till stora tillfällen.</p>
           </div>
           <div class="intro__text reveal" style="--d:.12s">
             <p>Vår specialitet är buffémat – ett stort, varierat och fräscht utbud. Till vardags utgår vi från traditionell husmanskost som vi tillagar i köket på Kafé 9:an.</p>
