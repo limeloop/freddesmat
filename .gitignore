@@ -2,3 +2,9 @@
 .claude/
 node_modules/
 .vercel/
+.output/
+.nitro/
+.tanstack/
+dist/
+.env*
+!.env.example

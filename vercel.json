@@ -1,0 +1,13 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "redirects": [
+    { "source": "/julbord", "destination": "/catering#jul", "permanent": true },
+    { "source": "/julbord/", "destination": "/catering#jul", "permanent": true },
+    { "source": "/nyar", "destination": "/catering", "permanent": true },
+    { "source": "/nyar/", "destination": "/catering", "permanent": true },
+    { "source": "/catering.html", "destination": "/catering", "permanent": true },
+    { "source": "/om-oss.html", "destination": "/om-oss", "permanent": true },
+    { "source": "/kontakt.html", "destination": "/kontakt", "permanent": true },
+    { "source": "/index.html", "destination": "/", "permanent": true }
+  ]
+}

@@ -1,0 +1,294 @@
+@import 'tailwindcss';
+
+/* ==========================================================================
+   Freddes Mat – designsystem (Tailwind v4)
+   Röd, vit och svart. Bebas Neue för rubriker, Instrument Sans för text och
+   Kaushan Script som sparsam handskriven accent.
+   ========================================================================== */
+
+@font-face {
+  font-family: 'Bebas Neue';
+  src: url('/fonts/bebas-neue-latin.woff2') format('woff2');
+  font-weight: 400;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Instrument Sans';
+  src: url('/fonts/instrument-sans-var-latin.woff2') format('woff2');
+  font-weight: 400 700;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Kaushan Script';
+  src: url('/fonts/kaushan-script-latin.woff2') format('woff2');
+  font-weight: 400;
+  font-display: swap;
+}
+
+@theme {
+  --color-red: oklch(0.585 0.233 27.6); /* #E30613 */
+  --color-red-deep: oklch(0.5 0.2 27.6);
+  --color-ink: oklch(0.205 0 0); /* #171717 */
+  --color-ink-2: oklch(0.24 0 0);
+  --color-paper: oklch(0.985 0.004 106); /* #FAFAF7 */
+  --color-mist: oklch(0.957 0.003 106); /* #F2F2F0 */
+  --color-muted: oklch(0.47 0.008 106);
+  --color-body: oklch(0.33 0.006 106);
+  --color-line: oklch(0.205 0 0 / 0.12);
+  --color-line-light: oklch(1 0 0 / 0.14);
+
+  --font-display: 'Bebas Neue', 'Oswald', Impact, 'Arial Narrow', sans-serif;
+  --font-sans: 'Instrument Sans', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  --font-script: 'Kaushan Script', 'Brush Script MT', cursive;
+
+  --radius-card: 16px;
+  --radius-panel: 22px;
+
+  --ease-brand: cubic-bezier(0.2, 0.7, 0.1, 1);
+
+  --animate-marquee: marquee 48s linear infinite;
+  --animate-stage-zoom: stage-zoom 18s var(--ease-brand) forwards;
+  --animate-rise: rise 1.2s var(--ease-brand) both;
+  --animate-nudge: nudge 2.4s var(--ease-brand) infinite;
+
+  @keyframes marquee {
+    to {
+      transform: translateX(-50%);
+    }
+  }
+  @keyframes stage-zoom {
+    from {
+      transform: scale(1.06);
+    }
+  }
+  @keyframes rise {
+    from {
+      opacity: 0;
+      transform: translateY(16px);
+    }
+  }
+  @keyframes nudge {
+    50% {
+      transform: translateY(4px);
+    }
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Bas
+   -------------------------------------------------------------------------- */
+
+@layer base {
+  :root {
+    --gutter: clamp(20px, 4vw, 56px);
+    --header-h: 84px;
+    --section: clamp(80px, 11vw, 168px);
+    interpolate-size: allow-keywords;
+    @media (width < 980px) {
+      --header-h: 68px;
+    }
+  }
+
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: calc(var(--header-h) + 16px);
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    @apply bg-paper font-sans text-[17px] leading-[1.6] text-ink antialiased max-md:text-[16.5px];
+  }
+
+  h1,
+  h2,
+  h3 {
+    text-wrap: balance;
+  }
+  p {
+    text-wrap: pretty;
+  }
+
+  ::selection {
+    @apply bg-red text-white;
+  }
+
+  :focus-visible {
+    @apply rounded outline-2 outline-offset-3 outline-red;
+  }
+
+  /* Mjuka sidbyten (View Transitions) */
+  @view-transition {
+    navigation: auto;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Återanvändbara byggstenar
+   -------------------------------------------------------------------------- */
+
+@utility wrap {
+  @apply mx-auto w-full max-w-[1360px] px-(--gutter);
+}
+
+@utility section-y {
+  padding-block: var(--section);
+}
+
+@utility display {
+  @apply font-display leading-[0.88] font-normal tracking-[0.005em] uppercase;
+}
+@utility h-xl {
+  font-size: clamp(60px, 8.4vw, 136px);
+}
+@utility h-lg {
+  font-size: clamp(52px, 7vw, 112px);
+}
+@utility h-md {
+  font-size: clamp(40px, 4.8vw, 72px);
+}
+
+@utility statement {
+  @apply font-sans font-normal;
+  font-size: clamp(28px, 3.4vw, 50px);
+  line-height: 1.12;
+  letter-spacing: -0.028em;
+}
+
+@utility script {
+  @apply font-script tracking-normal text-red normal-case;
+}
+
+@utility lead {
+  @apply max-w-[34em] text-body;
+  font-size: clamp(18px, 1.45vw, 21px);
+  line-height: 1.55;
+}
+
+@utility kicker {
+  @apply mb-5.5 inline-flex items-center gap-3 text-xs font-semibold tracking-[0.22em] text-muted uppercase;
+  &::before {
+    @apply h-0.5 w-7 flex-none bg-red content-[''];
+  }
+}
+
+@utility btn {
+  @apply inline-flex min-h-13 cursor-pointer items-center justify-center gap-2.5 rounded-full border-[1.5px] px-6.5 text-[12.5px] font-semibold tracking-[0.14em] whitespace-nowrap uppercase transition duration-300 ease-brand hover:-translate-y-px;
+}
+@utility btn-sm {
+  @apply min-h-10.5 px-5 text-[11.5px];
+}
+@utility btn-red {
+  @apply border-red bg-red text-white hover:border-red-deep hover:bg-red-deep;
+}
+@utility btn-ink {
+  @apply border-ink bg-ink text-white hover:bg-black;
+}
+@utility btn-ghost {
+  @apply border-ink/30 bg-transparent text-ink hover:border-ink;
+}
+@utility btn-white {
+  @apply border-white bg-white text-ink hover:bg-paper;
+}
+
+@utility link-arrow {
+  @apply inline-flex items-center gap-2.5 border-b-[1.5px] border-current pb-1.5 text-[12.5px] font-semibold tracking-[0.14em] uppercase transition-all duration-300 hover:gap-3.5 hover:text-red;
+}
+
+/* Inrörelse vid scroll – rent CSS (scroll-driven animations), ingen JavaScript. */
+@utility reveal {
+  @supports (animation-timeline: view()) {
+    @media (prefers-reduced-motion: no-preference) {
+      animation: rise linear both;
+      animation-timeline: view();
+      animation-range: entry 0% entry 55%;
+    }
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Header – på startsidan genomskinlig över heron, svart när man scrollar.
+   Styrs av en scroll-driven animation; webbläsare utan stöd får svart header.
+   -------------------------------------------------------------------------- */
+
+@layer components {
+  .site-header {
+    @apply sticky top-0 z-50 bg-ink text-white;
+  }
+
+  [data-home] .site-header {
+    @apply fixed inset-x-0;
+  }
+
+  @supports (animation-timeline: scroll()) {
+    [data-home] .site-header {
+      animation: header-solid linear both;
+      animation-timeline: scroll(root);
+      animation-range: 0 120px;
+    }
+    [data-home] .site-header .brand {
+      animation: fade-in linear both;
+      animation-timeline: scroll(root);
+      animation-range: 40px 140px;
+    }
+    [data-home]:has(#mobilmeny:popover-open) .site-header {
+      animation: none;
+      @apply bg-ink;
+    }
+    [data-home]:has(#mobilmeny:popover-open) .site-header .brand {
+      animation: none;
+    }
+  }
+
+  @keyframes header-solid {
+    from {
+      background-color: transparent;
+      box-shadow: none;
+    }
+    to {
+      background-color: var(--color-ink);
+      box-shadow: 0 10px 30px -18px rgb(0 0 0 / 0.55);
+    }
+  }
+  @keyframes fade-in {
+    from {
+      opacity: 0;
+    }
+  }
+
+  /* Mobilmeny – Popover API (fungerar utan JavaScript) */
+  #mobilmeny {
+    @apply fixed inset-x-0 bottom-0 m-0 h-auto max-h-none w-full max-w-none border-0 bg-ink p-0 text-white;
+    top: var(--header-h);
+    opacity: 0;
+    translate: 0 -8px;
+    transition:
+      opacity 0.3s var(--ease-brand),
+      translate 0.3s var(--ease-brand),
+      display 0.3s allow-discrete,
+      overlay 0.3s allow-discrete;
+    &:popover-open {
+      opacity: 1;
+      translate: 0 0;
+      @starting-style {
+        opacity: 0;
+        translate: 0 -8px;
+      }
+    }
+  }
+  body:has(#mobilmeny:popover-open) {
+    overflow: hidden;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
